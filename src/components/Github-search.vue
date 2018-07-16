@@ -1,12 +1,13 @@
 <template>
   <div class="github-search">
-    <input type="text" class="search" placeholder="Your github username"
+    <input type="text" class="input" placeholder="Your github username"
+      @keyup.enter="$emit('searchUser', search)"
       v-model="search">
-    <button
+    <button class="action"
       @click="$emit('searchUser', search)">
       Send
     </button>
-  </div>  
+  </div>
 </template>
 <script>
 export default {

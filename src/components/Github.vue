@@ -2,10 +2,12 @@
   <div class="container">
     <h1>{{ title }}</h1>
     <GithubSearch
-      @searchUser="searchUser"/>    
-    <GithubCard 
+      @searchUser="searchUser"/>
+    <GithubCard
       :user="user"/>
-      <h3>{{ error }}</h3>
+    <Error
+      :errorList="handlers"
+    />
   </div>
 </template>
 
@@ -13,39 +15,41 @@
 import axios from "axios";
 import GithubSearch from "./Github-search.vue";
 import GithubCard from "./Github-card.vue";
+import Error from "./Error.vue";
 
 export default {
   name: "Github",
   data() {
     return {
       user: {},
-      error: "",
+      handlers: [],
       title: "Welcome to github playground api :)"
     };
   },
   methods: {
     searchUser: async function(search) {
-      this.cleanErrorMessages();
-      try {
-        let res = await axios.get("https://api.github.com/users/" + search);
-        this.user = res.data;
-      } catch (err) {
-        this.user = {};
-        this.error = "User not found";
+      if (search) {
+        this.cleanErrorMessages();
+        try {
+          let res = await axios.get("https://api.github.com/users/" + search);
+          this.user = res.data;
+        } catch (err) {
+          this.user = {};
+          this.handlers.push("User not found");
+        }
       }
     },
     cleanErrorMessages: function() {
-      this.error = "";
+      this.handlers = [];
     }
   },
   components: {
     GithubSearch,
-    GithubCard
+    GithubCard,
+    Error
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 input.search {
   border-radius: 3px;

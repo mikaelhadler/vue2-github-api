@@ -1,19 +1,31 @@
 <template>
-  <div class="github"
+  <div class="github-wrapper"
     v-if="user.login">
-    <div class="github-avatar">
-      <img 
+    <div class="avatar">
+      <img
         v-bind:src="user.avatar_url">
     </div>
-    <div class="github-information">
-      <span>
-        {{ user.public_repos }}
-        <label>Stars</label>
-      </span>
-      <span>
-        {{ user.followers }}
-        <label>Repositories</label>
-      </span>
+    <div class="information">
+      <div>
+        <label for="">{{ user.public_repos }}</label>
+        <a :href="user.repos_url">Repositories</a>
+      </div>
+      <div>
+        <label for="">{{ user.followers }}</label>
+        <a
+          :href="user.following_url">Followers</a>
+      </div>
+      <div>
+        <label for="">{{ user.following }}</label>
+        <a
+          :href="user.following_url">Following</a>
+      </div>
+    </div>
+    <div>
+      <span>Need save this?</span>
+      <button>
+        click here
+      </button>
     </div>
   </div>
 </template>
