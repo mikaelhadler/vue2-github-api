@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "0.18.0",
+    "bulma": "latest",
     "vue": "^2.5.2"
   },
   "devDependencies": {
