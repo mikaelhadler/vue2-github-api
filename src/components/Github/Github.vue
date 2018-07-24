@@ -11,8 +11,8 @@
 
 <script>
 import axios from "axios";
-import GithubSearch from "./Github-search.vue";
-import GithubCard from "./Github-card.vue";
+import GithubSearch from "../Github-search/Github-search.vue";
+import GithubCard from "../Github-card/Github-card.vue";
 
 export default {
   name: "Github",

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Github from "./components/Github";
+import Github from "./components/Github/Github";
 
 export default {
   name: "App",
