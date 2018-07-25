@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: 'GithubSearch',
+  name: 'UserNameSearch',
   data() {
     return {
       search: '',

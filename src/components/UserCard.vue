@@ -38,7 +38,7 @@
 </template>
 <script>
 export default {
-  name: 'GithubCard',
+  name: 'UserCard',
   props: {
     user: {
       type: Object,

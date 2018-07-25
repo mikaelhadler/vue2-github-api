@@ -2,28 +2,28 @@
   <div id="app">
     <div class="container">
       <h1>{{ title }}</h1>
-      <github-search
+      <UserNameSearch
         @searchUser="searchUser"/>
-      <github-card
+      <Loading v-if="isLoading"/>
+      <UserCard
         :user="user"/>
-        <h3 v-if="error">{{ error }}</h3>
-        <loading v-if="isLoading"></loading>
+      <h3 v-if="error">{{ error }}</h3>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import githubSearch from './components/githubSearch';
-import githubCard from './components/githubCard';
-import loading from './components/loading';
+import UserNameSearch from './components/UserNameSearch';
+import UserCard from './components/UserCard';
+import Loading from './components/Loading';
 
 export default {
   name: 'Github',
   components: {
-    githubSearch,
-    githubCard,
-    loading,
+    UserNameSearch,
+    UserCard,
+    Loading,
   },
 
   data() {
@@ -36,24 +36,19 @@ export default {
   },
 
   methods: {
-    async searchUser(search) {
+    searchUser(search) {
       this.cleanErrorMessages();
       this.isLoading = true;
-
-      try {
-        const { data } = await axios.get(`https://api.github.com/users/${search}`);
-
-        this.user = data;
-        this.isLoading = false;
-
-        return true;
-      } catch (e) {
-        this.user = {};
-        this.error = e.message;
-        this.isLoading = false;
-
-        return false;
-      }
+      axios
+        .get(`https://api.github.com/users/${search}`)
+        .then( res => {
+          this.user = res.data;
+          this.isLoading = false;
+        }).catch((e) => {
+          this.user = {};
+          this.error = e.message;
+          this.isLoading = false;
+        });
     },
 
     cleanErrorMessages() {
@@ -65,9 +60,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-input.search {
-  border-radius: 3px;
-}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
