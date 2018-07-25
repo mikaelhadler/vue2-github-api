@@ -4,19 +4,22 @@
       <h1>{{ title }}</h1>
       <UserNameSearch
         @searchUser="searchUser"/>
-      <Loading v-if="isLoading"/>
+      <Loading
+        v-if="isLoading"/>
       <UserCard
         :user="user"/>
-      <h3 v-if="error">{{ error }}</h3>
+      <Error
+        :error="error"/>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import UserNameSearch from './components/UserNameSearch';
-import UserCard from './components/UserCard';
-import Loading from './components/Loading';
+import UserNameSearch from './components/UserNameSearch/UserNameSearch';
+import UserCard from './components/UserCard/UserCard';
+import Loading from './components/Loader/Loading';
+import Error from './components/Error/Error.vue'
 
 export default {
   name: 'Github',
@@ -24,6 +27,7 @@ export default {
     UserNameSearch,
     UserCard,
     Loading,
+    Error
   },
 
   data() {

@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <span
-      v-for="(error, index) in errorList"
-      :key="index">
-      {{ error }}
+  <div class="error">
+    <span>
+      {{ errorUpper }}
     </span>
   </div>
 </template>
 <script>
 export default {
-  props: ["errorList"],
-  name: "Error"
+  props: ["error"],
+  name: "Error",
+  computed: {
+    errorUpper: function () {
+      return this.error.toUpperCase();
+    }
+  }
 };
 </script>
+<style scoped>
+.error span {
+  font-weight: 600;
+}
+</style>
+
