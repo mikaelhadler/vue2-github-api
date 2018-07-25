@@ -68,10 +68,6 @@ export default {
 input.search {
   border-radius: 3px;
 }
-</style>
-
-
-<style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
