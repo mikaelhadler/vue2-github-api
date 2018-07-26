@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>{{ title }}</h1>
+      <h1 class="title">{{ title }}</h1>
       <UserNameSearch
         @searchUser="searchUser"/>
       <Loading
@@ -9,6 +9,8 @@
       <UserCard
         :user="user"/>
       <Error
+        @cleanError="cleanErrorMessages"
+        v-if="error"
         :error="error"/>
     </div>
   </div>
@@ -19,7 +21,8 @@ import axios from 'axios';
 import UserNameSearch from './components/UserNameSearch/UserNameSearch';
 import UserCard from './components/UserCard/UserCard';
 import Loading from './components/Loader/Loading';
-import Error from './components/Error/Error.vue'
+import Error from './components/Error/Error.vue';
+import 'bulma/css/bulma.css';
 
 export default {
   name: 'Github',
@@ -54,7 +57,6 @@ export default {
           this.isLoading = false;
         });
     },
-
     cleanErrorMessages() {
       this.error = '';
     },

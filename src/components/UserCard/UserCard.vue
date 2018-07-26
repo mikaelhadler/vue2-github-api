@@ -1,38 +1,43 @@
 <template>
-  <div class="github-card"
+  <div class="card"
     v-if="user.login">
-    <div class="github-avatar">
-      <img
-        v-bind:src="user.avatar_url">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img alt="Placeholder image"
+          v-bind:src="user.avatar_url">
+      </figure>
     </div>
-    <div class="github-information">
-      <span class="name">
-        <a :href="user.html_url">
-          {{ user.login }}
-        </a>
-      </span>
-      <span class="company">
-        {{ user.company }}
-      </span>
-      <span>
-        {{ user.location }}
-      </span>
-      <hr/>
-      <span>
-         {{ user.public_repos }}
-        <a
-          :href="user.repos_url">Repositories</a>
-      </span>
-      <span>
-        {{ user.followers }}
-        <a
-          :href="user.following_url">Followers</a>
-      </span>
-      <span>
-        {{ user.following }}
-        <a
-          :href="user.following_url">Following</a>
-      </span>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4">{{ user.name }}</p>
+          <p class="subtitle is-6">@{{ user.login }}</p>
+        </div>
+      </div>
+      <div class="content">
+        <span class="company">
+          {{ user.company }}
+        </span>
+        <span>
+          {{ user.location }}
+        </span>
+        <hr/>
+        <span>
+          {{ user.public_repos }}
+          <a
+            :href="user.repos_url">Repositories</a>
+        </span>
+        <span>
+          {{ user.followers }}
+          <a
+            :href="user.following_url">Followers</a>
+        </span>
+        <span>
+          {{ user.following }}
+          <a
+            :href="user.following_url">Following</a>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -51,18 +56,15 @@ export default {
 :root {
   --main-border-color: #036564;
 }
-.github-card {
-  width: 190px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px;
-  border: 2px solid #036564;
+.card {
+  margin: auto;
+  width: 255px;
 }
 .github-avatar img {
   border-radius: 3px;
   max-width: 200px;
 }
-.github-information {
+.content {
   display: flex;
   flex-direction: column;
   padding: 2px;

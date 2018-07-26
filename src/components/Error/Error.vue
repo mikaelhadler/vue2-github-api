@@ -1,8 +1,8 @@
 <template>
-  <div class="error">
-    <span>
-      {{ error | upperCase }}
-    </span>
+  <div class="notification">
+    <button class="delete"
+      @click="$emit('cleanError')"></button>
+    {{ error | upperCase }}
   </div>
 </template>
 <script>
@@ -11,14 +11,20 @@ export default {
   name: "Error",
   filters: {
     upperCase: function (value) {
-      return value.toUpperCase();
+      return !!value ? value.toUpperCase() : null;
+    }
+  },
+  methods: {
+    cleanError () {
+
     }
   }
 };
 </script>
 <style scoped>
-.error span {
-  font-weight: 600;
+.notification {
+  max-width: 500px;
+    margin: auto;
 }
 </style>
 
