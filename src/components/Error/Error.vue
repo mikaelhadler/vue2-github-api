@@ -1,7 +1,7 @@
 <template>
   <div class="error">
     <span>
-      {{ errorUpper }}
+      {{ error | upperCase }}
     </span>
   </div>
 </template>
@@ -9,9 +9,9 @@
 export default {
   props: ["error"],
   name: "Error",
-  computed: {
-    errorUpper: function () {
-      return this.error.toUpperCase();
+  filters: {
+    upperCase: function (value) {
+      return value.toUpperCase();
     }
   }
 };
